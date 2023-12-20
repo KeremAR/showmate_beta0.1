@@ -1,0 +1,49 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.tv-show-segment {
+    width: 100vw;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.segment_status {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.shows-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tv-show {
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tv-show:hover {
+    background-color: #f0f0f0;
+}
