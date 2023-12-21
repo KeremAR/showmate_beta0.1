@@ -1,16 +1,25 @@
-// Fetch data from TVData.json
-fetch("TVData.json")
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Network response was not ok: ${response.statusText}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log("Fetched Data:", data);
-        displayShowsByStatus(data); // Pass the fetched data to the display function
-    })
-    .catch(error => console.error("Fetch Error:", error));
+// Fetch data from TVData.json or retrieve from local storage
+const storedData = JSON.parse(localStorage.getItem('TVData'));
+
+// Fetch data if local storage is empty
+if (!storedData || storedData.length === 0) {
+    fetch("TVData.json")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Network response was not ok: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            updateLocalStorage(data); // Save the fetched data to local storage
+            console.log("Fetched Data:", data);
+            displayShowsByStatus(data);
+        })
+        .catch(error => console.error("Fetch Error:", error));
+} else {
+    console.log("Stored Data:", storedData);
+    displayShowsByStatus(storedData);
+}
 
 function displayShows(containerId, shows) {
     const container = document.getElementById(containerId);
@@ -70,4 +79,8 @@ function displayShowsByStatus(data) {
     displayShows("watchingShows", watchingShows);
     displayShows("notStartedShows", notStartedShows);
     displayShows("endedShows", endedShows);
+}
+
+function updateLocalStorage(data) {
+    localStorage.setItem('TVData', JSON.stringify(data));
 }
