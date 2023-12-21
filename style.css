@@ -47,3 +47,14 @@ body {
 .tv-show:hover {
     background-color: #f0f0f0;
 }
+
+.episode-details {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.episode-details h2 {
+    margin-right: 20px;
+    /* Adjust margin as needed */
+}
