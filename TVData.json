@@ -3,319 +3,281 @@
         "year": 2021,
         "genre": "Crime, Mystery, Thriller",
         "network": "Netflix",
-        "seasons": 2,
-        "episode": 17,
-        "episodes": [{
-                "season": 1,
-                "episodeNumber": 1,
-                "title": "Chapter 1",
-                "description": "Assane Diop's life turns upside down when his father dies after being accused of a crime he didn't commit.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
-                "episodeNumber": 2,
-                "title": "Chapter 2",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
+        "episodes": 17,
+        "seasons": [{
+            "season_1": [{
+                    "episodeNumber": 1,
+                    "title": "Chapter 1",
+                    "description": "Assane Diop's life turns upside down when his father dies after being accused of a crime he didn't commit.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
+                    "episodeNumber": 2,
+                    "title": "Chapter 2",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
+                    "episodeNumber": 3,
+                    "title": "Chapter 3",
+                    "description": "Assane executes a heist inspired by Arsène Lupin, the fictional character his father loved.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
+                    "episodeNumber": 4,
+                    "title": "Chapter 4",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
+                    "episodeNumber": 5,
+                    "title": "Chapter 5",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
+                    "episodeNumber": 6,
+                    "title": "Chapter 6",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
+                    "episodeNumber": 7,
+                    "title": "Chapter 7",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
+                    "episodeNumber": 8,
+                    "title": "Chapter 8",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
+                    "episodeNumber": 9,
+                    "title": "Chapter 9",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
+                    "episodeNumber": 10,
+                    "title": "Chapter 10",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                }
+            ]
+        }, {
+            "season_2": [{
 
-                "episodeNumber": 3,
-                "title": "Chapter 3",
-                "description": "Assane executes a heist inspired by Arsène Lupin, the fictional character his father loved.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
+                    "episodeNumber": 1,
+                    "title": "Chapter 11",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
+                    "episodeNumber": 2,
+                    "title": "Chapter 12",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 4,
-                "title": "Chapter 4",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
+                    "episodeNumber": 3,
+                    "title": "Chapter 13",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 5,
-                "title": "Chapter 5",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
+                    "episodeNumber": 4,
+                    "title": "Chapter 14",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 6,
-                "title": "Chapter 6",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
+                    "episodeNumber": 5,
+                    "title": "Chapter 15",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 7,
-                "title": "Chapter 7",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
+                    "episodeNumber": 6,
+                    "title": "Chapter 16",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 8,
-                "title": "Chapter 8",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
-
-                "episodeNumber": 9,
-                "title": "Chapter 9",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
-
-                "episodeNumber": 10,
-                "title": "Chapter 10",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 2,
-
-                "episodeNumber": 1,
-                "title": "Chapter 11",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 2,
-
-                "episodeNumber": 2,
-                "title": "Chapter 12",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 2,
-
-                "episodeNumber": 3,
-                "title": "Chapter 13",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 2,
-
-                "episodeNumber": 4,
-                "title": "Chapter 14",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 2,
-
-                "episodeNumber": 5,
-                "title": "Chapter 15",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 2,
-
-                "episodeNumber": 6,
-                "title": "Chapter 16",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 2,
-
-                "episodeNumber": 7,
-                "title": "Chapter 17",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            }
-        ]
+                    "episodeNumber": 7,
+                    "title": "Chapter 17",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                }
+            ]
+        }]
     },
     {
         "title": "kerem",
         "year": 2021,
         "genre": "Crime, Mystery, Thriller",
         "network": "Netflix",
-        "seasons": 2,
-        "episode": 17,
-        "episodes": [{
-                "season": 1,
-                "episodeNumber": 1,
-                "title": "Chapter 1",
-                "description": "Assane Diop's life turns upside down when his father dies after being accused of a crime he didn't commit.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
-                "episodeNumber": 2,
-                "title": "Chapter 2",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
+        "episodes": 17,
+        "seasons": [{
+            "season_1": [{
+                    "episodeNumber": 1,
+                    "title": "Chapter 1",
+                    "description": "Assane Diop's life turns upside down when his father dies after being accused of a crime he didn't commit.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
+                    "episodeNumber": 2,
+                    "title": "Chapter 2",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 3,
-                "title": "Chapter 3",
-                "description": "Assane executes a heist inspired by Arsène Lupin, the fictional character his father loved.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
+                    "episodeNumber": 3,
+                    "title": "Chapter 3",
+                    "description": "Assane executes a heist inspired by Arsène Lupin, the fictional character his father loved.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
+                    "episodeNumber": 4,
+                    "title": "Chapter 4",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 4,
-                "title": "Chapter 4",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
+                    "episodeNumber": 5,
+                    "title": "Chapter 5",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 5,
-                "title": "Chapter 5",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
+                    "episodeNumber": 6,
+                    "title": "Chapter 6",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 6,
-                "title": "Chapter 6",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
+                    "episodeNumber": 7,
+                    "title": "Chapter 7",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 7,
-                "title": "Chapter 7",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
+                    "episodeNumber": 8,
+                    "title": "Chapter 8",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 8,
-                "title": "Chapter 8",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
+                    "episodeNumber": 9,
+                    "title": "Chapter 9",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 9,
-                "title": "Chapter 9",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 1,
+                    "episodeNumber": 10,
+                    "title": "Chapter 10",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                }
+            ]
+        }, {
+            "season_2": [{
 
-                "episodeNumber": 10,
-                "title": "Chapter 10",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 2,
+                    "episodeNumber": 1,
+                    "title": "Chapter 11",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 1,
-                "title": "Chapter 11",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 2,
+                    "episodeNumber": 2,
+                    "title": "Chapter 12",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 2,
-                "title": "Chapter 12",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 2,
+                    "episodeNumber": 3,
+                    "title": "Chapter 13",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 3,
-                "title": "Chapter 13",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 2,
+                    "episodeNumber": 4,
+                    "title": "Chapter 14",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 4,
-                "title": "Chapter 14",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 2,
+                    "episodeNumber": 5,
+                    "title": "Chapter 15",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 5,
-                "title": "Chapter 15",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 2,
+                    "episodeNumber": 6,
+                    "title": "Chapter 16",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                },
+                {
 
-                "episodeNumber": 6,
-                "title": "Chapter 16",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            },
-            {
-                "season": 2,
-
-                "episodeNumber": 7,
-                "title": "Chapter 17",
-                "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
-                "airDate": "2021-01-08",
-                "watched": false
-            }
-        ]
+                    "episodeNumber": 7,
+                    "title": "Chapter 17",
+                    "description": "Assane seeks revenge against Hubert Pellegrini, the wealthy man responsible for his father's downfall.",
+                    "airDate": "2021-01-08",
+                    "watched": false
+                }
+            ]
+        }]
     }
 ]
