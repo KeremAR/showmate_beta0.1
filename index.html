@@ -6,19 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 
-    <title>TV Shows</title>
+    <title>showmate</title>
 </head>
 
 <body>
     <div class="container">
-        <div id="watchingShows" class="status-container">
-            <h2>Watching Shows</h2>
+        <div id="notStarted" class="tv-show-segment">
+            <h2 class="segment_status">Not Started Yet</h2>
+            <div id="notStartedShows" class="shows-container"></div>
         </div>
-        <div id="notStartedShows" class="status-container">
-            <h2>Not Started Shows</h2>
+        <div id="watching" class="tv-show-segment">
+            <h2 class="segment_status">Watching</h2>
+            <div id="watchingShows" class="shows-container"></div>
         </div>
-        <div id="endedShows" class="status-container">
-            <h2>Ended Shows</h2>
+        <div id="ended" class="tv-show-segment">
+            <h2 class="segment_status">Ended</h2>
+            <div id="endedShows" class="shows-container"></div>
         </div>
     </div>
 

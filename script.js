@@ -29,14 +29,16 @@ function displayShows(containerId, shows) {
         const showDiv = document.createElement("div");
         showDiv.classList.add("tv-show");
         showDiv.innerHTML = `
-            <h3>${show.title}</h3>
-            <p>Genre: ${show.genre}</p>
-            <p>Network: ${show.network}</p>
-            <a href="showpage.html?show=${encodeURIComponent(JSON.stringify(show))}" target="_blank">View Details</a>
-        `;
+                <h3>${show.title}</h3>
+                <p>Genre: ${show.genre}</p>
+                <p>Network: ${show.network}</p>
+                <a href="showpage.html?show=${encodeURIComponent(JSON.stringify(show))}" target="_blank">View Details</a>
+            `;
         container.appendChild(showDiv);
     });
 }
+
+
 
 function displayShowsByStatus(data) {
     console.log("Displaying shows by status");
