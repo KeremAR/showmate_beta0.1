@@ -1,25 +1,19 @@
 // Fetch data from TVData.json or retrieve from local storage
-const storedData = JSON.parse(localStorage.getItem('TVData'));
 
 // Fetch data if local storage is empty
-if (!storedData || storedData.length === 0) {
-    fetch("TVData.json")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Network response was not ok: ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            updateLocalStorage(data); // Save the fetched data to local storage
-            console.log("Fetched Data:", data);
-            displayShowsByStatus(data);
-        })
-        .catch(error => console.error("Fetch Error:", error));
-} else {
-    console.log("Stored Data:", storedData);
-    displayShowsByStatus(storedData);
-}
+fetch("TVData.json")
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("Fetched Data:", data);
+        displayShowsByStatus(data);
+    })
+    .catch(error => console.error("Fetch Error:", error));
+
 
 function displayShows(containerId, shows) {
     const container = document.getElementById(containerId);
@@ -49,26 +43,30 @@ function displayShowsByStatus(data) {
 
     data.forEach(show => {
         let isWatching = false;
-        let isEnded = true;
 
         show.seasons.forEach(season => {
             for (const [seasonKey, episodes] of Object.entries(season)) {
-                episodes.forEach(episode => {
-                    if (episode.watched) {
-                        isWatching = true;
-                    } else {
-                        isEnded = false;
-                    }
-                });
+                // Check if any episode in the season is watched
+                const hasWatchedEpisode = episodes.some(episode => episode.watched);
+
+                if (hasWatchedEpisode) {
+                    isWatching = true;
+                    break; // No need to check other seasons if one is already watched
+                }
             }
         });
 
         if (isWatching) {
             watchingShows.push(show);
-        } else if (isEnded) {
+        } else if (show.watched) {
+            // Move the show to "Ended" if the overall watched status is true
             endedShows.push(show);
-        } else {
+        } else if (show.episodes > 0) {
+            // Consider shows with episodes as not started if no episode is watched
             notStartedShows.push(show);
+        } else {
+            // Consider shows with no episodes as ended
+            endedShows.push(show);
         }
     });
 
@@ -79,8 +77,4 @@ function displayShowsByStatus(data) {
     displayShows("watchingShows", watchingShows);
     displayShows("notStartedShows", notStartedShows);
     displayShows("endedShows", endedShows);
-}
-
-function updateLocalStorage(data) {
-    localStorage.setItem('TVData', JSON.stringify(data));
 }

@@ -4,7 +4,7 @@
         "genre": "Crime, Mystery, Thriller",
         "network": "Netflix",
         "episodes": 17,
-        "watched": false,
+        "watched": true,
         "seasons": [{
             "season_1": [{
                     "episodeNumber": 1,

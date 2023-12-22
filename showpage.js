@@ -1,8 +1,6 @@
-let showData; // Declare in the global scope
-
 document.addEventListener("DOMContentLoaded", () => {
     const queryParams = new URLSearchParams(window.location.search);
-    showData = JSON.parse(decodeURIComponent(queryParams.get("show")));
+    const showData = JSON.parse(decodeURIComponent(queryParams.get("show")));
 
     displayShowInfo(showData);
     displaySeasons(showData.seasons);
@@ -18,18 +16,6 @@ function displayShowInfo(show) {
         <p>Episodes: ${show.episodes}</p>
     `;
 }
-// Update the watched status in the display
-show.seasons.forEach(season => {
-    for (const [seasonKey, episodes] of Object.entries(season)) {
-        episodes.forEach(episode => {
-            const episodeContainer = document.getElementById(`${seasonKey}_${episode.episodeNumber}`);
-            if (episodeContainer) {
-                const watchedStatus = episode.watched ? 'Yes' : 'No';
-                episodeContainer.querySelector(".watched-status").innerText = `Watched: ${watchedStatus}`;
-            }
-        });
-    }
-});
 
 function displaySeasons(seasons) {
     const seasonsContainer = document.getElementById("seasons");
