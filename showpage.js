@@ -17,21 +17,19 @@ function displayShowInfo(show) {
         <p>Network: ${show.network}</p>
         <p>Episodes: ${show.episodes}</p>
     `;
-
-    // Update the watched status in the display
-    show.seasons.forEach(season => {
-        for (const [seasonKey, episodes] of Object.entries(season)) {
-            episodes.forEach(episode => {
-                const episodeContainer = document.getElementById(`${seasonKey}_${episode.episodeNumber}`);
-                if (episodeContainer) {
-                    const watchedStatus = episode.watched ? 'Yes' : 'No';
-                    episodeContainer.querySelector(".watched-status").innerText = `Watched: ${watchedStatus}`;
-                }
-            });
-        }
-    });
 }
-
+// Update the watched status in the display
+show.seasons.forEach(season => {
+    for (const [seasonKey, episodes] of Object.entries(season)) {
+        episodes.forEach(episode => {
+            const episodeContainer = document.getElementById(`${seasonKey}_${episode.episodeNumber}`);
+            if (episodeContainer) {
+                const watchedStatus = episode.watched ? 'Yes' : 'No';
+                episodeContainer.querySelector(".watched-status").innerText = `Watched: ${watchedStatus}`;
+            }
+        });
+    }
+});
 
 function displaySeasons(seasons) {
     const seasonsContainer = document.getElementById("seasons");
@@ -58,19 +56,17 @@ function displayEpisodes(seasonKey, episodes) {
         const episodeDiv = document.createElement("div");
         episodeDiv.classList.add("episode");
         episodeDiv.innerHTML = `
-    <div class="episode-details" id="${seasonKey}_${episode.episodeNumber}">
-        <h3>${episode.episodeNumber}</h4>
-        <h4>${episode.title}</h4>
-        <p>Air Date: ${episode.airDate}</p>
-        <p class="watched-status">Watched: ${episode.watched ? 'Yes' : 'No'}</p>
-        <button onclick="viewEpisode('${seasonKey}', ${episode.episodeNumber})">View Episode</button>
-        <button onclick="markWatched('${seasonKey}', ${episode.episodeNumber})">${episode.watched ? 'Mark Unwatched' : 'Mark Watched'}</button>
-    </div>`;
+        <div class="episode-details">
 
+        <h3>${episode.episodeNumber}</h4>
+            <h4>${episode.title}</h4>
+            <p>Air Date: ${episode.airDate}</p>
+            <p>Watched: ${episode.watched ? 'Yes' : 'No'}</p>
+            <button onclick="viewEpisode('${seasonKey}', ${episode.episodeNumber})">View Episode</button>
+        `;
         episodesContainer.appendChild(episodeDiv);
     });
 }
-
 
 function viewEpisode(seasonKey, episodeNumber) {
     const episodeData = getEpisodeData(seasonKey, episodeNumber);
@@ -90,16 +86,4 @@ function getEpisodeData(seasonKey, episodeNumber) {
         airDate: "2023-01-01",
         watched: false
     };
-}
-
-function markWatched(seasonKey, episodeNumber) {
-    // You may want to update your data structure to mark the episode as watched
-    console.log(`Marking Season ${seasonKey}, Episode ${episodeNumber} as Watched`);
-
-    // For now, let's assume you have the showData object in the global scope
-    const episode = getEpisodeData(showData, seasonKey, episodeNumber);
-    episode.watched = !episode.watched;
-
-    // Update the display to reflect the change (you might need to refresh data from local storage or API)
-    displayShowInfo(showData);
 }
