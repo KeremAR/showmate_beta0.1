@@ -13,63 +13,49 @@ function displayShowInfo(show) {
         <p>Year: ${show.year}</p>
         <p>Genre: ${show.genre}</p>
         <p>Network: ${show.network}</p>
-        <p>Episodes: ${show.episodes}</p>
+        <p>Episodes: ${getTotalEpisodes(show.seasons)}</p>
     `;
 }
 
 function displaySeasons(seasons) {
     const seasonsContainer = document.getElementById("seasons");
 
-    seasons.forEach(season => {
-        for (const [seasonKey, episodes] of Object.entries(season)) {
-            const seasonDiv = document.createElement("div");
-            seasonDiv.classList.add("season");
-            seasonDiv.innerHTML = `
-                <h3>${seasonKey}</h3>
-                <div class="episodes-container" id="${seasonKey}"></div>
-            `;
-            seasonsContainer.appendChild(seasonDiv);
+    seasons.forEach((season, seasonIndex) => {
+        const seasonDiv = document.createElement("div");
+        seasonDiv.classList.add("season");
+        seasonDiv.innerHTML = `
+            <h3>${season.season}</h3>
+            <div class="episodes-container" id="season-${seasonIndex}"></div>
+        `;
+        seasonsContainer.appendChild(seasonDiv);
 
-            displayEpisodes(seasonKey, episodes);
-        }
+        displayEpisodes(`season-${seasonIndex}`, season.episodes);
     });
 }
 
-function displayEpisodes(seasonKey, episodes) {
-    const episodesContainer = document.getElementById(seasonKey);
+function displayEpisodes(seasonId, episodes) {
+    const episodesContainer = document.getElementById(seasonId);
 
     episodes.forEach(episode => {
         const episodeDiv = document.createElement("div");
         episodeDiv.classList.add("episode");
         episodeDiv.innerHTML = `
-        <div class="episode-details">
+            <div class="episode-details">
+                <h3>${episode.episodeNumber}</h3>
+                <h4>${episode.title}</h4>
+                <p>${episode.description}</p>
+                <p>Air Date: ${episode.airDate}</p>
+                <p>Watched: ${episode.watched ? 'Yes' : 'No'}</p>
+                <a href="episodepage.html?episode=${encodeURIComponent(JSON.stringify(episode))}" target="_blank">View Episode</a>
 
-        <h3>${episode.episodeNumber}</h4>
-            <h4>${episode.title}</h4>
-            <p>Air Date: ${episode.airDate}</p>
-            <p>Watched: ${episode.watched ? 'Yes' : 'No'}</p>
-            <button onclick="viewEpisode('${seasonKey}', ${episode.episodeNumber})">View Episode</button>
+            </div>
         `;
         episodesContainer.appendChild(episodeDiv);
     });
 }
 
-function viewEpisode(seasonKey, episodeNumber) {
-    const episodeData = getEpisodeData(seasonKey, episodeNumber);
-    const queryParams = new URLSearchParams();
-    queryParams.set("episode", encodeURIComponent(JSON.stringify(episodeData)));
-    window.open(`episodepage.html?${queryParams.toString()}`, "_blank");
-}
 
-function getEpisodeData(seasonKey, episodeNumber) {
-    // Retrieve episode data based on seasonKey and episodeNumber from your show data
-    // For now, I'll return a placeholder data
-    return {
-        seasonKey,
-        episodeNumber,
-        title: `Episode ${episodeNumber}`,
-        description: `Description of Episode ${episodeNumber}`,
-        airDate: "2023-01-01",
-        watched: false
-    };
+
+function getTotalEpisodes(seasons) {
+    return seasons.reduce((total, season) => total + season.episodes.length, 0);
 }

@@ -8,10 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
 function displayEpisodeInfo(episode) {
     const episodeInfoContainer = document.getElementById("episodeInfo");
     episodeInfoContainer.innerHTML = `
-
         <h2>${episode.title}</h2>
-        <p>Description: ${episode.description}</p>
-        <p>Air Date: ${episode.airDate}</p>
+        <p> ${episode.description}</p>
+        <p> ${episode.airDate}</p>
         <p>Watched: ${episode.watched ? 'Yes' : 'No'}</p>
     `;
 }

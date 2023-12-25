@@ -1,6 +1,10 @@
 // Fetch data from TVData.json or retrieve from local storage
 
 // Fetch data if local storage is empty
+/* watched sil id ekle hepsine ok*/
+/* watched sil id ekle hepsine ok*/
+/* watched sil id ekle hepsine ok*/
+/* watched sil id ekle hepsine ok*/
 fetch("TVData.json")
     .then(response => {
         if (!response.ok) {
@@ -34,6 +38,8 @@ function displayShows(containerId, shows) {
 
 
 
+// ...
+
 function displayShowsByStatus(data) {
     console.log("Displaying shows by status");
 
@@ -45,23 +51,26 @@ function displayShowsByStatus(data) {
         let isWatching = false;
 
         show.seasons.forEach(season => {
-            for (const [seasonKey, episodes] of Object.entries(season)) {
-                // Check if any episode in the season is watched
-                const hasWatchedEpisode = episodes.some(episode => episode.watched);
+            const episodes = season.episodes;
 
-                if (hasWatchedEpisode) {
-                    isWatching = true;
-                    break; // No need to check other seasons if one is already watched
-                }
+            // Check if any episode in the season is watched
+            const hasWatchedEpisode = episodes.some(episode => episode.watched);
+
+            if (hasWatchedEpisode) {
+                isWatching = true;
             }
         });
 
         if (isWatching) {
+            // If the show is now watching, update the watched status for all episodes
+            show.seasons.forEach(season => {
+                season.episodes.forEach(episode => {
+                    episode.watched = true;
+                });
+            });
+
             watchingShows.push(show);
-        } else if (show.watched) {
-            // Move the show to "Ended" if the overall watched status is true
-            endedShows.push(show);
-        } else if (show.episodes > 0) {
+        } else if (show.episodesAll > 0) {
             // Consider shows with episodes as not started if no episode is watched
             notStartedShows.push(show);
         } else {
@@ -78,3 +87,5 @@ function displayShowsByStatus(data) {
     displayShows("notStartedShows", notStartedShows);
     displayShows("endedShows", endedShows);
 }
+
+// ...
