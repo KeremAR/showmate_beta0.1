@@ -61,7 +61,12 @@ function displayEpisodes(seasonId, episodes) {
         episodeDiv.classList.add("episode");
 
         const key = `episode_${episode.id}`;
-        const isWatched = localStorage.getItem(key);
+        const localData = localStorage.getItem("watched")
+        const wEpisodes = localData ? localData.split(",") : []
+        const isWatched = wEpisodes.some(id => {
+            console.log(id, key)
+            return id == key
+        })
 
         episodeDiv.innerHTML = `
             <div class="episode-details">
@@ -69,8 +74,8 @@ function displayEpisodes(seasonId, episodes) {
                 <h4>${episode.title}</h4>
                 <p>${episode.description}</p>
                 <p>Air Date: ${episode.airDate}</p>
-                <p>Watched: ${isWatched ? 'Yes' : 'No'}</p>
-                <button onclick="toggleWatched('episode', ${episode.id}, '${seasonId}')">Mark ${isWatched ? 'Unwatched' : 'Watched'}</button>
+                <p id="${key}-p">Watched: ${isWatched ? 'Yes' : 'No'}</p>
+                <button id="${key}-btn" onclick="toggleWatched('${key}')">Mark ${isWatched ? 'Unwatched' : 'Watched'}</button>
                 <a href="episodepage.html?episode=${encodeURIComponent(JSON.stringify(episode))}" target="_blank">View Episode</a>
             </div>
         `;
@@ -79,24 +84,39 @@ function displayEpisodes(seasonId, episodes) {
 }
 
 
-function toggleWatched(type, id, seasonId) {
-    const key = `${type}_${id}`;
-    console.log(`Toggling ${key}. Was Watched: ${localStorage.getItem(key) === 'watched'}`);
+function toggleWatched(key) {
 
-    if (localStorage.getItem(key) === 'watched') {
-        localStorage.removeItem(key);
+
+    console.log(`Toggling ${key}. Was Watched: ${localStorage.getItem(key) === 'watched'}`);
+    const localData = localStorage.getItem("watched")
+    let currentWatchedEpisodes = localData ? localData.split(",") : []
+
+    const isWatched = currentWatchedEpisodes.some(id => {
+        console.log(id, key)
+        return id == key
+    })
+    if (isWatched) {
+        localStorage.setItem("watched", currentWatchedEpisodes.filter(id => id != key).join(","));
+
     } else {
-        localStorage.setItem(key, 'watched');
+        const newItem = [...currentWatchedEpisodes, key]
+        localStorage.setItem('watched', newItem.join(","));
+
     }
 
     // Update the button text using the key
-    updateButtonText(type, id, seasonId, key);
+    updateButtonText(key, !isWatched);
 }
 
-function updateButtonText(type, id, seasonId, key) {
+function updateButtonText(key, isWatched) {
     // Update the button text
-    const button = document.querySelector(`[onclick="toggleWatched('${type}', ${id}, '${seasonId}')"]`);
+    const button = document.getElementById(`${key}-btn`)
+    const p = document.getElementById(`${key}-p`)
+
     if (button) {
-        button.textContent = `Mark ${localStorage.getItem(key) ? 'Unwatched' : 'Watched'}`;
+        button.textContent = `Mark ${isWatched ? 'Unwatched' : 'Watched'}`
+    }
+    if (p) {
+        p.textContent = `Watched ${isWatched ? 'Yes' : 'No'}`
     }
 }

@@ -33,33 +33,35 @@ function displayShows(containerId, shows) {
 
 function displayShowsByStatus(data) {
     console.log("Displaying shows by status");
-
+    const localData = localStorage.getItem("watched")
+    const wEpisodes = localData ? localData.split(",") : []
     const watchingShows = [];
     const notStartedShows = [];
     const endedShows = [];
 
     data.forEach(show => {
-        let isWatching = false;
 
+        let started = false
+        let allEpisodes = []
         show.seasons.forEach(season => {
             const episodes = season.episodes;
-
-            // Check if any episode in the season is watched
-            const hasWatchedEpisode = episodes.some(episode => episode.id in localStorage);
-
-            if (hasWatchedEpisode) {
-                isWatching = true;
-            }
+            allEpisodes = [...allEpisodes, ...episodes];
         });
-
-        if (isWatching) {
-            watchingShows.push(show);
-        } else if (show.episodesAll > 0) {
-            // Consider shows with episodes as not started if no episode is watched
-            notStartedShows.push(show);
-        } else {
-            // Consider shows with no episodes as ended
+        const watched = allEpisodes.filter(episode => {
+            const key = `episode_${episode.id}`;
+            const isWatched = wEpisodes.some(id => id == key)
+            return isWatched
+        })
+        const allEpisodesWatched = watched.length == allEpisodes.length;
+        const watchingEpisodes = watched.length > 0 && !allEpisodesWatched
+        if (allEpisodesWatched) {
             endedShows.push(show);
+        } else if (watchingEpisodes) {
+            // Consider shows with episodes as watching if not all episodes are watched
+            watchingShows.push(show);
+        } else {
+            // Consider shows with no episodes or all episodes watched as ended
+            notStartedShows.push(show);
         }
     });
 
@@ -71,6 +73,7 @@ function displayShowsByStatus(data) {
     displayShows("notStartedShows", notStartedShows);
     displayShows("endedShows", endedShows);
 }
+
 
 function isEpisodeWatched(episodeId) {
     return localStorage.getItem(`watched_${episodeId}`) === "true";
