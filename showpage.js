@@ -1,6 +1,8 @@
+let showData;
+
 document.addEventListener("DOMContentLoaded", () => {
     const queryParams = new URLSearchParams(window.location.search);
-    const showData = JSON.parse(decodeURIComponent(queryParams.get("show")));
+    showData = JSON.parse(decodeURIComponent(queryParams.get("show")));
 
     displayShowInfo(showData);
     displaySeasons(showData.seasons);
@@ -13,7 +15,7 @@ function displayShowInfo(show) {
         <p>Year: ${show.year}</p>
         <p>Genre: ${show.genre}</p>
         <p>Network: ${show.network}</p>
-        <p>Episodes: ${getTotalEpisodes(show.seasons)}</p>
+        <p>Episodes: ${show.episodesAll}</p>
     `;
 }
 
@@ -46,16 +48,49 @@ function displayEpisodes(seasonId, episodes) {
                 <p>${episode.description}</p>
                 <p>Air Date: ${episode.airDate}</p>
                 <p>Watched: ${episode.watched ? 'Yes' : 'No'}</p>
+                <button id="watchedButton_${seasonId}_${episode.episodeNumber}">
+    Mark ${episode.watched ? 'Unwatched' : 'Watched'}
+</button>
+            
                 <a href="episodepage.html?episode=${encodeURIComponent(JSON.stringify(episode))}" target="_blank">View Episode</a>
 
             </div>
         `;
         episodesContainer.appendChild(episodeDiv);
+        const button = document.getElementById(`watchedButton_${seasonId}_${episode.episodeNumber}`);
+        button.addEventListener('click', () => {
+            toggleWatched(seasonId, episode.episodeNumber, encodeURIComponent(JSON.stringify(showData)));
+        });
+
     });
 }
 
 
 
-function getTotalEpisodes(seasons) {
-    return seasons.reduce((total, season) => total + season.episodes.length, 0);
+function toggleWatched(seasonId, episodeNumber, showDataString) {
+    console.log('seasonId:', seasonId);
+    console.log('episodeNumber:', episodeNumber);
+    const showData = JSON.parse(decodeURIComponent(showDataString));
+    console.log('Original showData:', showData);
+    console.log('Original showData:', showData);
+
+    const season = showData.seasons.find(season => season.id === seasonId);
+
+    if (season) {
+        const episode = season.episodes.find(ep => ep.episodeNumber === episodeNumber);
+
+        if (episode) {
+            // Toggle the watched status
+            episode.watched = !episode.watched;
+
+            // Update the button text
+            const button = document.getElementById(`watchedButton_${seasonId}_${episodeNumber}`);
+            button.textContent = `Mark ${episode.watched ? 'Unwatched' : 'Watched'}`;
+        }
+
+    }
+    console.log('Updated showData:', showData);
+
+
+    // Update your arrays or perform any other necessary updates here
 }

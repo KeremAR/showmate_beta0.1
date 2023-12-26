@@ -1,10 +1,7 @@
 // Fetch data from TVData.json or retrieve from local storage
 
 // Fetch data if local storage is empty
-/* watched sil id ekle hepsine ok*/
-/* watched sil id ekle hepsine ok*/
-/* watched sil id ekle hepsine ok*/
-/* watched sil id ekle hepsine ok*/
+
 fetch("TVData.json")
     .then(response => {
         if (!response.ok) {
