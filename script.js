@@ -1,7 +1,4 @@
 // Fetch data from TVData.json or retrieve from local storage
-
-// Fetch data if local storage is empty
-
 fetch("TVData.json")
     .then(response => {
         if (!response.ok) {
@@ -11,10 +8,11 @@ fetch("TVData.json")
     })
     .then(data => {
         console.log("Fetched Data:", data);
+        // Save the data to local storage
+        localStorage.setItem('tvData', JSON.stringify(data));
         displayShowsByStatus(data);
     })
     .catch(error => console.error("Fetch Error:", error));
-
 
 function displayShows(containerId, shows) {
     const container = document.getElementById(containerId);
@@ -33,10 +31,6 @@ function displayShows(containerId, shows) {
     });
 }
 
-
-
-// ...
-
 function displayShowsByStatus(data) {
     console.log("Displaying shows by status");
 
@@ -51,7 +45,7 @@ function displayShowsByStatus(data) {
             const episodes = season.episodes;
 
             // Check if any episode in the season is watched
-            const hasWatchedEpisode = episodes.some(episode => episode.watched);
+            const hasWatchedEpisode = episodes.some(episode => episode.id in localStorage);
 
             if (hasWatchedEpisode) {
                 isWatching = true;
@@ -59,13 +53,6 @@ function displayShowsByStatus(data) {
         });
 
         if (isWatching) {
-            // If the show is now watching, update the watched status for all episodes
-            show.seasons.forEach(season => {
-                season.episodes.forEach(episode => {
-                    episode.watched = true;
-                });
-            });
-
             watchingShows.push(show);
         } else if (show.episodesAll > 0) {
             // Consider shows with episodes as not started if no episode is watched
@@ -85,4 +72,6 @@ function displayShowsByStatus(data) {
     displayShows("endedShows", endedShows);
 }
 
-// ...
+function isEpisodeWatched(episodeId) {
+    return localStorage.getItem(`watched_${episodeId}`) === "true";
+}
