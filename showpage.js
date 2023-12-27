@@ -1,6 +1,7 @@
+let showData;
 document.addEventListener("DOMContentLoaded", () => {
     const queryParams = new URLSearchParams(window.location.search);
-    const showData = JSON.parse(decodeURIComponent(queryParams.get("show")));
+    showData = JSON.parse(decodeURIComponent(queryParams.get("show")));
 
     displayShowInfo(showData);
     displaySeasons(showData.seasons);
@@ -14,26 +15,11 @@ function displayShowInfo(show) {
         <p>Genre: ${show.genre}</p>
         <p>Network: ${show.network}</p>
         <p>Episodes: ${show.episodesAll}</p>
+        <button onclick="markAllWatched('${show.id}')">Mark Watched</button>
+
     `;
 }
 
-function displaySeasons(seasons) {
-    const seasonsContainer = document.getElementById("seasons");
-
-    seasons.forEach((season, seasonIndex) => {
-        const seasonDiv = document.createElement("div");
-        seasonDiv.classList.add("season");
-        seasonDiv.innerHTML = `
-            <h3>${season.season}</h3>
-            <div class="episodes-container" id="season-${seasonIndex}">
-            <button onclick="toggleWatched('season', ${season.id})">Mark ${season.id in localStorage ? 'Unwatched' : 'Watched'}</button>
-            </div>
-        `;
-        seasonsContainer.appendChild(seasonDiv);
-
-        displayEpisodes(`season-${seasonIndex}`, season.episodes);
-    });
-}
 
 function displaySeasons(seasons) {
     const seasonsContainer = document.getElementById("seasons");
@@ -44,7 +30,8 @@ function displaySeasons(seasons) {
         seasonDiv.innerHTML = `
             <h3>${season.season}</h3>
             <div class="episodes-container" id="season-${seasonIndex}">
-            <button onclick="toggleWatched('season', ${season.id})">Mark ${season.id in localStorage ? 'Unwatched' : 'Watched'}</button>
+            <button onclick="markAllWatchedSeason(${seasonIndex})">Mark Watched</button>
+
             </div>
         `;
         seasonsContainer.appendChild(seasonDiv);
@@ -64,7 +51,6 @@ function displayEpisodes(seasonId, episodes) {
         const localData = localStorage.getItem("watched")
         const wEpisodes = localData ? localData.split(",") : []
         const isWatched = wEpisodes.some(id => {
-            console.log(id, key)
             return id == key
         })
 
@@ -83,16 +69,90 @@ function displayEpisodes(seasonId, episodes) {
     });
 }
 
+function markAllWatchedSeason(seasonIndex) {
+    const show = showData; // Use the global showData variable
+    const season = show.seasons[seasonIndex];
+
+    season.episodes.forEach(episode => {
+        const key = `episode_${episode.id}`;
+        toggleWatched(key);
+    });
+
+    // After marking all episodes as watched, update the show's segment
+    updateShowSegment(show);
+}
+
+function toggleWatchedSeason(show) {
+    show.seasons.forEach(season => {
+        season.episodes.forEach(episode => {
+            const key = `episode_${episode.id}`;
+            toggleWatched(key);
+        });
+    });
+    // After marking all episodes as watched, update the show's segment
+    updateShowSegment(show);
+}
+
+function updateShowSegment(show) {
+    const localData = localStorage.getItem("watched");
+    const wEpisodes = localData ? localData.split(",") : [];
+
+    let allEpisodesWatched = true;
+
+    show.seasons.forEach(season => {
+        season.episodes.forEach(episode => {
+            const key = `episode_${episode.id}`;
+            if (!wEpisodes.includes(key)) {
+                allEpisodesWatched = false;
+            }
+        });
+    });
+
+    if (allEpisodesWatched) {
+        // Move the show to the "Ended" segment
+        moveShowToEnded(show);
+    } else {
+        // Move the show to the "Watching" segment
+        moveShowToWatching(show);
+    }
+}
+
+function moveShowToEnded(show) {
+    const localData = localStorage.getItem("watched");
+    let currentWatchingShows = localData ? localData.split(",") : [];
+
+    // Remove the show from the "Watching" segment
+    currentWatchingShows = currentWatchingShows.filter(showId => showId !== `show_${show.id}`);
+
+    // Add the show to the "Ended" segment
+    const currentEndedShows = localStorage.getItem("ended") ? localStorage.getItem("ended").split(",") : [];
+    const newEndedShows = [...currentEndedShows, `show_${show.id}`];
+    localStorage.setItem("ended", newEndedShows.join(","));
+
+
+}
+
+function moveShowToWatching(show) {
+    const localData = localStorage.getItem("watched");
+    let currentEndedShows = localData ? localData.split(",") : [];
+
+    // Remove the show from the "Ended" segment
+    currentEndedShows = currentEndedShows.filter(showId => showId !== `show_${show.id}`);
+
+    // Add the show to the "Watching" segment
+    const currentWatchingShows = localStorage.getItem("watching") ? localStorage.getItem("watching").split(",") : [];
+    const newWatchingShows = [...currentWatchingShows, `show_${show.id}`];
+    localStorage.setItem("watching", newWatchingShows.join(","));
+
+
+}
+
 
 function toggleWatched(key) {
-
-
-    console.log(`Toggling ${key}. Was Watched: ${localStorage.getItem(key) === 'watched'}`);
     const localData = localStorage.getItem("watched")
     let currentWatchedEpisodes = localData ? localData.split(",") : []
 
     const isWatched = currentWatchedEpisodes.some(id => {
-        console.log(id, key)
         return id == key
     })
     if (isWatched) {
@@ -119,4 +179,18 @@ function updateButtonText(key, isWatched) {
     if (p) {
         p.textContent = `Watched ${isWatched ? 'Yes' : 'No'}`
     }
+}
+
+function markAllWatched(showId) {
+    const show = showData; // Use the global showData variable
+
+    show.seasons.forEach(season => {
+        season.episodes.forEach(episode => {
+            const key = `episode_${episode.id}`;
+            toggleWatched(key);
+        });
+    });
+
+    // After marking all episodes as watched, update the show's segment
+    updateShowSegment(show);
 }
