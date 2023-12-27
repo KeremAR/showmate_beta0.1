@@ -2,86 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// Component interface for composite pattern
+//interface for composite pattern
 interface TV {
     void watch();
 }
-
-// Leaf class for composite pattern
-class Episode implements TV {
-    private final int episodeNumber;
-    private final List<Integer> watchedEpisodes = new ArrayList<>();
-
-
-    public Episode(int episodeNumber) {
-        this.episodeNumber = episodeNumber;
-    }
-
-    @Override
-    public void watch() {
-        watchedEpisodes.add(episodeNumber);
-
-        System.out.println("Watched Episode " + episodeNumber);
-    }
-
-    public boolean isWatched() {
-        return !watchedEpisodes.isEmpty();
-    }
-    public int getEpisodeNumber() {
-        return episodeNumber;
-    }
-
-}
-
-// Composite class for composite pattern
-// ...
-
-class Season implements TV {
-    private final int seasonNumber;
-    private final List<TV> episodes = new ArrayList<>();
-
-    public Season(int seasonNumber, int numEpisodes) {
-        this.seasonNumber = seasonNumber;
-        for (int i = 1; i <= numEpisodes; i++) {
-            episodes.add(new Episode(i));
-        }
-    }
-    public int getSeasonNumber() {
-        return seasonNumber;
-    }
-
-    @Override
-    public void watch() {
-        System.out.println("Watching Season " + seasonNumber);
-        for (TV episode : episodes) {
-            if (!((Episode) episode).isWatched()) {
-                episode.watch();
-            }
-        }
-    }
-
-
-    public List<TV> getEpisodes() {
-        return episodes;
-    }
-    public boolean isSeasonWatched() {
-        for (TV episode : episodes) {
-            if (!((Episode) episode).isWatched()) {
-                return false;
-            }
-        }
-        return true;
-    }
-}
-
-
-// ...
-
-
-// Composite class for composite pattern
 class TvShow implements TV {
-    private final String title;
-    private final List<TV> seasons = new ArrayList<>();
+    public String title;
+    public  List<TV> seasons = new ArrayList<>();
 
     public TvShow(String title) {
         this.title = title;
@@ -89,7 +16,6 @@ class TvShow implements TV {
     public String getTitle() {
         return title;
     }
-
     public void addSeason(Season season) {
         seasons.add(season);
     }
@@ -107,6 +33,62 @@ class TvShow implements TV {
     }
 }
 
+class Season implements TV {
+    public  int seasonNumber;
+    public  List<TV> episodes = new ArrayList<>();
+
+    public Season(int seasonNumber, int numEpisodes) {
+        this.seasonNumber = seasonNumber;
+        for (int i = 1; i <= numEpisodes; i++) {
+            episodes.add(new Episode(i));
+        }
+    }
+    @Override
+    public void watch() {
+        System.out.println("Watching Season " + seasonNumber);
+        for (TV episode : episodes) {
+            if (!((Episode) episode).isWatched()) {
+                episode.watch();
+            }
+        }
+    }
+    public int getSeasonNumber() {
+        return seasonNumber;
+    }
+    public List<TV> getEpisodes() {
+        return episodes;
+    }
+    public boolean isSeasonWatched() {
+        for (TV episode : episodes) {
+            if (!((Episode) episode).isWatched()) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+// Leaf class for composite pattern
+class Episode implements TV {
+    public  int episodeNumber;
+    public List<Integer> watchedEpisodes = new ArrayList<>();
+    public Episode(int episodeNumber) {
+        this.episodeNumber = episodeNumber;
+    }
+
+    @Override
+    public void watch() {
+        watchedEpisodes.add(episodeNumber);
+        System.out.println("Watched Episode " + episodeNumber);
+    }
+
+    public boolean isWatched() {
+        return !watchedEpisodes.isEmpty();
+    }
+    public int getEpisodeNumber() {
+        return episodeNumber;
+    }
+}
 // Singleton class for singleton pattern
 class TvShowTracker {
     private static TvShowTracker instance;
@@ -142,8 +124,8 @@ class TvShowTracker {
 public class showmate_beta {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        // Create an empty list to store TV shows
         List<TvShow> shows = new ArrayList<>();
+
         // Singleton instance for tracking shows
         TvShowTracker tracker = TvShowTracker.getInstance();
 
@@ -159,14 +141,9 @@ public class showmate_beta {
         Season gotSeason2 = new Season(2, 2);
         gameOfThrones.addSeason(gotSeason1);
         gameOfThrones.addSeason(gotSeason2);
-
-
         tracker.trackShow(breakingBad);
         tracker.trackShow(gameOfThrones);
-
-
         int choice;
-
         do {
             System.out.println("\n1. Mark Episode as Watched\n2. Display Watched Status\n0. Exit");
             System.out.print("Enter your choice: ");
@@ -221,12 +198,8 @@ public class showmate_beta {
                         }
                     }
                     break;
-
-
             }
-
         } while (choice != 0);
-
         System.out.println("Exiting TV Show Tracker App.");
     }
 }

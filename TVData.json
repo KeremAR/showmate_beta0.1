@@ -1,5 +1,5 @@
 [{
-        "title": "Lupin",
+        "title": "Show1",
         "id": 1,
         "year": 2021,
         "genre": "Crime, Mystery, Thriller",
@@ -142,7 +142,7 @@
         }]
     },
     {
-        "title": "kerem",
+        "title": "Show2",
         "year": 2021,
         "genre": "Crime, Mystery, Thriller",
         "network": "Netflix",

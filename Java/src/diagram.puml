@@ -1,0 +1,52 @@
+@startuml
+
+interface TV {
+    {abstract} +watch()
+}
+
+class Episode {
+    -episodeNumber: int
+    -watchedEpisodes: List<Integer>
+    +watch()
+    +isWatched(): boolean
+    +getEpisodeNumber(): int
+}
+
+class Season {
+    -seasonNumber: int
+    -episodes: List<TV>
+    +watch()
+    +getSeasonNumber(): int
+    +isSeasonWatched(): boolean
+    +getEpisodes(): List<TV>
+}
+
+class TvShow {
+    -title: String
+    -seasons: List<TV>
+    +watch()
+    +getTitle(): String
+    +addSeason(season: TV): void
+    +getSeasons(): List<TV>
+}
+
+class TvShowTracker {
+    -instance: TvShowTracker
+    -trackedShows: List<TvShow>
+    {static} +getInstance(): TvShowTracker
+    +trackShow(show: TvShow): void
+    +getTrackedShows(): List<TvShow>
+    +displayWatchedStatus(): void
+}
+
+class showmate_beta {
+    {static} +main(args: String[]): void
+}
+
+TV <|-- Episode
+TV <|-- Season
+TV <|-- TvShow
+TV <|-- TvShowTracker
+TvShow "1" *-- "0..*" TV : seasons
+
+@enduml
