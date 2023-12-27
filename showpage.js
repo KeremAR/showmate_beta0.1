@@ -9,13 +9,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function displayShowInfo(show) {
     const showInfoContainer = document.getElementById("showInfo");
+    const isShowWatched = isShowAllEpisodesWatched(show);
+
     showInfoContainer.innerHTML = `
         <h2>${show.title}</h2>
         <p>Year: ${show.year}</p>
         <p>Genre: ${show.genre}</p>
         <p>Network: ${show.network}</p>
         <p>Episodes: ${show.episodesAll}</p>
-        <button onclick="markAllWatched('${show.id}')">Mark Watched</button>
+        <button onclick="markAllWatched('${show.id}')">Mark ${isShowWatched ? 'Unwatched' : 'Watched'}</button>
 
     `;
 }
@@ -27,10 +29,12 @@ function displaySeasons(seasons) {
     seasons.forEach((season, seasonIndex) => {
         const seasonDiv = document.createElement("div");
         seasonDiv.classList.add("season");
+        const isSeasonWatched = isSeasonAllEpisodesWatched(season);
+
         seasonDiv.innerHTML = `
             <h3>${season.season}</h3>
             <div class="episodes-container" id="season-${seasonIndex}">
-            <button onclick="markAllWatchedSeason(${seasonIndex})">Mark Watched</button>
+            <button onclick="markAllWatchedSeason(${seasonIndex})">Mark ${isSeasonWatched ? 'Unwatched' : 'Watched'}</button>
 
             </div>
         `;
@@ -80,6 +84,7 @@ function markAllWatchedSeason(seasonIndex) {
 
     // After marking all episodes as watched, update the show's segment
     updateShowSegment(show);
+
 }
 
 function toggleWatchedSeason(show) {
@@ -193,4 +198,40 @@ function markAllWatched(showId) {
 
     // After marking all episodes as watched, update the show's segment
     updateShowSegment(show);
+
+}
+// Helper function to check if all episodes of a show are watched
+function isShowAllEpisodesWatched(show) {
+    const localData = localStorage.getItem("watched");
+    const wEpisodes = localData ? localData.split(",") : [];
+
+    let allEpisodesWatched = true;
+
+    show.seasons.forEach(season => {
+        season.episodes.forEach(episode => {
+            const key = `episode_${episode.id}`;
+            if (!wEpisodes.includes(key)) {
+                allEpisodesWatched = false;
+            }
+        });
+    });
+
+    return allEpisodesWatched;
+}
+
+// Helper function to check if all episodes of a season are watched
+function isSeasonAllEpisodesWatched(season) {
+    const localData = localStorage.getItem("watched");
+    const wEpisodes = localData ? localData.split(",") : [];
+
+    let allEpisodesWatched = true;
+
+    season.episodes.forEach(episode => {
+        const key = `episode_${episode.id}`;
+        if (!wEpisodes.includes(key)) {
+            allEpisodesWatched = false;
+        }
+    });
+
+    return allEpisodesWatched;
 }
